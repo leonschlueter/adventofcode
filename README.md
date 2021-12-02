@@ -1,2 +1,2 @@
-# advent-of-code-2021
-These are my submittions to the 2021 Advent of Code challenges written in Java.
+# Advent Of Code - Leon Schlüter
+These are my submittions to the Advent of Code challenges in Java. Other years challenges will be added over the course of time.
