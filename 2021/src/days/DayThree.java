@@ -1,5 +1,5 @@
 /* Advent of Code 2021
- * Day: Two
+ * Day: Three
  * Author: Leon Schlüter
  * 
  */
