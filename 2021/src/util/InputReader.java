@@ -8,11 +8,11 @@ public class InputReader {
 	InputStream f;
 
 	public InputReader(String fileName) {
-		System.out.println(fileName);
+		System.out.println("Reading from: " + fileName);
 		this.f = InputReader.class.getResourceAsStream("/resources/" + fileName);
-		  if (this.f == null) {
-		        throw new NullPointerException("name");
-		    }
+		if (this.f == null) {
+			throw new NullPointerException("name");
+		}
 	}
 
 	public ArrayList<Integer> readIntegerList() {
