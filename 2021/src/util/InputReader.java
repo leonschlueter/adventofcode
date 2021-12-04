@@ -25,6 +25,17 @@ public class InputReader {
 		return arr;
 	}
 
+	public ArrayList<Integer> splitIntegerList(char c) {
+		Scanner s = new Scanner(this.f);
+		String[] str = s.next().split(",");
+		ArrayList<Integer> arr = new ArrayList<Integer>();
+		for (int i = 0; i < str.length; i++) {
+			arr.add(Integer.parseInt(str[i]));
+		}
+		s.close();
+		return arr;
+	}
+
 	public ArrayList<String> readStringList() {
 		ArrayList<String> arr = new ArrayList<String>();
 		Scanner s = new Scanner(this.f);
@@ -33,5 +44,22 @@ public class InputReader {
 		}
 		s.close();
 		return arr;
+	}
+
+	public ArrayList<int[][][]> createThreeDMatrix() {
+		ArrayList<int[][][]> cards = new ArrayList<int[][][]>();
+		Scanner s = new Scanner(this.f);
+		while (s.hasNext()) {
+			int[][][] card = new int[5][5][2];
+			for (int i = 0; i < card.length; i++) {
+				for (int j = 0; j < card.length; j++) {
+					card[i][j][0] = s.nextInt();
+					card[i][j][1] = 0;
+				}
+			}
+			cards.add(card);
+		}
+
+		return cards;
 	}
 }
