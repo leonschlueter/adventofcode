@@ -6,13 +6,16 @@ import java.util.*;
 public class InputReader {
 
 	InputStream f;
-
+	long time;
+	public long lastTime;
 	public InputReader(String fileName) {
 		System.out.println("Reading from: " + fileName);
 		this.f = InputReader.class.getResourceAsStream("/resources/" + fileName);
 		if (this.f == null) {
 			throw new NullPointerException("name");
 		}
+		this.time = System.currentTimeMillis();
+		this.lastTime = 0;
 	}
 
 	public ArrayList<Integer> readIntegerList() {
@@ -22,6 +25,7 @@ public class InputReader {
 			arr.add(s.nextInt());
 		}
 		s.close();
+		createTime();
 		return arr;
 	}
 
@@ -33,6 +37,7 @@ public class InputReader {
 			arr.add(Integer.parseInt(str[i]));
 		}
 		s.close();
+		
 		return arr;
 	}
 
@@ -43,6 +48,7 @@ public class InputReader {
 			arr.add(s.nextLine());
 		}
 		s.close();
+		createTime();
 		return arr;
 	}
 
@@ -59,7 +65,7 @@ public class InputReader {
 			}
 			cards.add(card);
 		}
-
+		createTime();
 		return cards;
 	}
 
@@ -90,6 +96,7 @@ public class InputReader {
 
 		}
 		s.close();
+		createTime();
 		return lines;
 	}
 
@@ -100,5 +107,9 @@ public class InputReader {
 			}
 			System.out.println();
 		}
+	}
+	private void createTime() {
+		this.lastTime = System.currentTimeMillis() - time;
+		System.out.println("Input time taken: "+lastTime+"ms");
 	}
 }

@@ -6,16 +6,24 @@ import util.*;
 public class DayFive {
 	public static void main(String[] args) {
 		// Read input and return array
-		InputReader ir = new InputReader("dayFive.txt");
+		InputReader ir = new InputReader("selfTests.txt");
 		ArrayList<Line> lines = ir.createLineArray();
 		// Task A:
+		long beginTime = System.currentTimeMillis();
 		int[][] map = drawLines(lines, false);
 		int res = countMultiple(map);
 		System.out.println("Result for Task A: " + res);
+		long taskAtime = (System.currentTimeMillis()-beginTime);
+		System.out.println("Time Task A: "+taskAtime+"ms");
 		// Task B:
+		beginTime = System.currentTimeMillis();
 		map = drawLines(lines, true);
 		res = countMultiple(map);
 		System.out.println("Result for Task B: " + res);
+		long taskBtime = (System.currentTimeMillis()-beginTime);
+		System.out.println("Time Task B: "+taskBtime+"ms");
+		System.out.println("Total time: "+(ir.lastTime+taskAtime+taskBtime)+"ms");
+		
 	}
 
 	private static int[][] drawLines(ArrayList<Line> lines, boolean taskB) {

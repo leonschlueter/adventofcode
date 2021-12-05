@@ -9,16 +9,22 @@ public class TemplateDay {
 	public static void main(String[] args) {
 		//Read input and return array
 		InputReader ir = new InputReader("dayTwo.txt");
-		ArrayList<Integer> in = ir.readIntegerList();
-		
+		long beginTime = System.currentTimeMillis();
 		
 		//Task A:
-		for (Integer i : in) {
-			System.out.println(i);
-		}
 		
+		long taskAtime = (System.currentTimeMillis()-beginTime);
+		System.out.println("====[RESULT]====");
+		System.out.println();
+		beginTime = System.currentTimeMillis();
 		//Task B:
-
+		
+		System.out.println();
+		long taskBtime = (System.currentTimeMillis()-beginTime);
+		System.out.println("=====[TIME]=====");
+		System.out.println("Time Task A: "+taskAtime+"ms");
+		System.out.println("Time Task B: "+taskBtime+"ms");
+		System.out.println("Total time: "+(ir.lastTime+taskAtime+taskBtime)+"ms");
 	}
 
 }
