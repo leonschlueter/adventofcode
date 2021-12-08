@@ -8,6 +8,7 @@ public class InputReader {
 	InputStream f;
 	long time;
 	public long lastTime;
+
 	public InputReader(String fileName) {
 		System.out.println("Reading from: " + fileName);
 		this.f = InputReader.class.getResourceAsStream("/resources/" + fileName);
@@ -37,7 +38,7 @@ public class InputReader {
 			arr.add(Integer.parseInt(str[i]));
 		}
 		s.close();
-		
+
 		return arr;
 	}
 
@@ -100,6 +101,28 @@ public class InputReader {
 		return lines;
 	}
 
+	public ArrayList<String[]> giveEight() {
+		ArrayList<String[]> arr = new ArrayList<String[]>();
+		Scanner s = new Scanner(this.f);
+		while (s.hasNextLine()) {
+			String[] line = new String[14];
+			String sp = s.nextLine();
+			String split = sp.replace(" | ", " ");
+			split = split.trim().replace("  ", " ");
+			line = split.split(" ");
+			arr.add(line);
+		}
+		for (String[] list : arr) {
+			for (int i = 0; i < list.length; i++) {
+				char[] charArray = list[i].toCharArray();
+				Arrays.sort(charArray);
+				list[i] = new String(charArray);
+
+			}
+		}
+		return arr;
+	}
+
 	public void print2Darray(int[][] array) {
 		for (int i = 0; i < array.length; i++) {
 			for (int j = 0; j < array.length; j++) {
@@ -108,8 +131,9 @@ public class InputReader {
 			System.out.println();
 		}
 	}
+
 	private void createTime() {
 		this.lastTime = System.currentTimeMillis() - time;
-		System.out.println("Input time taken: "+lastTime+"ms");
+		System.out.println("Input time taken: " + lastTime + "ms");
 	}
 }
