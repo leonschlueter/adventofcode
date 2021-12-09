@@ -120,6 +120,7 @@ public class InputReader {
 
 			}
 		}
+		createTime();
 		return arr;
 	}
 
