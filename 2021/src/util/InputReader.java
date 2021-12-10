@@ -41,6 +41,18 @@ public class InputReader {
 
 		return arr;
 	}
+	public ArrayList<String[]> splitStringList() {
+		Scanner s = new Scanner(this.f);
+		
+		ArrayList<String[]> arr = new ArrayList<String[]>();
+		while(s.hasNextLine()) {
+			String[] str = s.nextLine().split("");
+			arr.add(str);
+		}
+		s.close();
+
+		return arr;
+	}
 
 	public ArrayList<String> readStringList() {
 		ArrayList<String> arr = new ArrayList<String>();
