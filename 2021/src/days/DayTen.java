@@ -36,7 +36,6 @@ public class DayTen {
 			ind++;
 		}
 		int median = ((res.length - ind)/2)+ind;
-		System.out.println(Arrays.toString(res));
 		System.out.println("Task B: " + res[median]);
 		long taskBtime = (System.currentTimeMillis() - beginTime);
 		System.out.println("=====[TIME]=====");
