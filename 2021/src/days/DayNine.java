@@ -23,32 +23,22 @@ public class DayNine {
 
 		ArrayList<int[]> low = findLowPointsList(mat);
 		int[] max = new int[low.size()];
+	
 		for (int i = 0; i < low.size(); i++) {
 			int[] coord = low.get(i);
 			int c = 0;
 			char[][] debug = new char[mat.size()][mat.get(0).length];
-			for (int i1 = 0; i1 < debug.length; i1++) {
-				for (int j = 0; j < debug[0].length; j++) {
-					debug[i1][j] = '0';
+			for (int j = 0; j < debug.length; j++) {
+				for (int k = 0; k < debug[0].length; k++) {
+					debug[j][k] = '0';
 				}
 			}
-			findBasin(mat, coord[0], coord[1], debug, 0);
-			for (int i1 = 0; i1 < debug.length; i1++) {
-				// System.out.println(Arrays.toString(debug[i1]));
-				for (int j = 0; j < debug[i1].length; j++) {
-					if (debug[i1][j] == 'X') {
-						c++;
-					}
-				}
-			}
-
-			max[i] = c;
+			max[i] = findBasin(mat, coord[0], coord[1], debug);
 		}
 		// System.out.println(Arrays.toString(max));
 
 		Arrays.sort(max);
 		int i = max.length - 1;
-		System.out.println(Arrays.toString(max));
 		System.out.println("Result Task B: " + (max[i] * max[i - 1] * max[i - 2]));
 
 		long taskBtime = (System.currentTimeMillis() - beginTime);
@@ -119,34 +109,27 @@ public class DayNine {
 	}
 
 	private static ArrayList<int[]> findLowPointsList(ArrayList<int[]> arr) {
-
 		ArrayList<int[]> list = new ArrayList<int[]>();
 		for (int i = 0; i < arr.size(); i++) {
 			int[] l = arr.get(i);
 			for (int j = 0; j < l.length; j++) {
 				int[] res = new int[2];
+				res[0] = i;
+				res[1] = j;
+
 				if (i != 0 && i != arr.size() - 1) {
 					if (j == 0) {
 						if ((arr.get(i + 1)[j] > arr.get(i)[j]) && arr.get(i - 1)[j] > arr.get(i)[j]
 								&& (arr.get(i)[j + 1] > arr.get(i)[j])) {
-
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else if (j == l.length - 1) {
 						if ((arr.get(i + 1)[j] > arr.get(i)[j]) && arr.get(i - 1)[j] > arr.get(i)[j]
 								&& (arr.get(i)[j - 1] > arr.get(i)[j])) {
-
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else if ((arr.get(i - 1)[j] > arr.get(i)[j]) && (arr.get(i)[j - 1] > arr.get(i)[j])
 							&& (arr.get(i + 1)[j] > arr.get(i)[j]) && (arr.get(i)[j + 1] > arr.get(i)[j])) {
-
-						res[0] = i;
-						res[1] = j;
 						list.add(res);
 					}
 				}
@@ -154,23 +137,17 @@ public class DayNine {
 				else if (i == 0) {
 					if (j == 0) {
 						if ((arr.get(i + 1)[j] > arr.get(i)[j]) && (arr.get(i)[j + 1] > arr.get(i)[j])) {
-
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else if (j == l.length - 1) {
 						if ((arr.get(i + 1)[j] > arr.get(i)[j]) && (arr.get(i)[j - 1] > arr.get(i)[j])) {
 
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else {
 						if ((arr.get(i + 1)[j] > arr.get(i)[j]) && (arr.get(i)[j + 1] > arr.get(i)[j])
 								&& (arr.get(i)[j - 1] > arr.get(i)[j])) {
-							res[0] = i;
-							res[1] = j;
+
 							list.add(res);
 						}
 					}
@@ -178,23 +155,17 @@ public class DayNine {
 					if (j == 0) {
 						if ((arr.get(i - 1)[j] > arr.get(i)[j]) && (arr.get(i)[j + 1] > arr.get(i)[j])) {
 
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else if (j == l.length - 1) {
 						if ((arr.get(i - 1)[j] > arr.get(i)[j]) && (arr.get(i)[j - 1] > arr.get(i)[j])) {
 
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					} else {
 						if ((arr.get(i - 1)[j] > arr.get(i)[j]) && (arr.get(i)[j + 1] > arr.get(i)[j])
 								&& (arr.get(i)[j - 1] > arr.get(i)[j])) {
 
-							res[0] = i;
-							res[1] = j;
 							list.add(res);
 						}
 					}
@@ -205,48 +176,96 @@ public class DayNine {
 		return list;
 	}
 
-	public static int findBasin(ArrayList<int[]> arr, int x, int y, char[][] debug, int size) {
+	private static ArrayList<int[]> findLowPointsNew(ArrayList<int[]> arr) {
+		ArrayList<int[]> res = new ArrayList<int[]>();
+		for (int i = 0; i < arr.size(); i++) {
+			for (int j = 0; j < arr.get(i).length; j++) {
+				boolean up = false;
+				boolean down = false;
+				boolean left = false;
+				boolean right = false;
+				boolean isLow = true;
+				if (i > 1) {
+					up = true;
+				}
+				if (i < arr.size() - 1) {
+					down = true;
+				}
+				if (j > 1) {
+					left = true;
+				}
+				if (j < arr.get(1).length - 1) {
+					right = true;
+				}
+
+				if (up && arr.get(i)[j] > arr.get(i - 1)[j]) {
+					isLow = false;
+				}
+				if (down && arr.get(i)[j] > arr.get(i + 1)[j]) {
+					isLow = false;
+				}
+				if (left && arr.get(i)[j] > arr.get(i)[j - 1]) {
+					isLow = false;
+				}
+				if (right && arr.get(i)[j] > arr.get(i)[j + 1]) {
+					isLow = false;
+				}
+
+				if (isLow) {
+					int[] a = new int[2];
+					a[0] = i;
+					a[1] = j;
+					res.add(a);
+				}
+			}
+		}
+
+		return res;
+	}
+
+	public static int findBasin(ArrayList<int[]> arr, int x, int y, char[][] debug) {
+		//System.out.println("Added Point: " + x + " " + y);
 
 		debug[x][y] = 'X';
-
-		// System.out.println("Point: " + x + " " + y);
-		// System.out.println(size);
-		size += sizeOfUpper(arr, x - 1, y, debug, size);
-		size += sizeOfLower(arr, x + 1, y, debug, size);
-		size += sizeOfRight(arr, x, y + 1, debug, size);
-		size += sizeOfLeft(arr, x, y - 1, debug, size);
+		int size = 1;
+		size += sizeOfUpper(arr, x - 1, y, debug);
+		if (sizeOfUpper(arr, x - 1, y, debug) >= 1) {
+			// System.out.println("Added upper Point: "+(x-1)+" "+y);
+		}
+		size += sizeOfLower(arr, x + 1, y, debug);
+		size += sizeOfRight(arr, x, y + 1, debug);
+		size += sizeOfLeft(arr, x, y - 1, debug);
 		return size;
 	}
 
-	private static int sizeOfUpper(ArrayList<int[]> arr, int x, int y, char[][] debug, int size) {
-		if (x == -1 || arr.get(x)[y] != arr.get(x + 1)[y] + 1 || arr.get(x)[y] == 9) {
+	private static int sizeOfUpper(ArrayList<int[]> arr, int x, int y, char[][] debug) {
+		if (x == -1 || arr.get(x)[y] < arr.get(x + 1)[y] + 1 || arr.get(x)[y] == 9 || debug[x][y] == 'X') {
 			return 0;
 		}
-
-		return findBasin(arr, x, y, debug, size);
+		else
+		return findBasin(arr, x, y, debug);
 	}
 
-	private static int sizeOfLower(ArrayList<int[]> arr, int x, int y, char[][] debug, int size) {
+	private static int sizeOfLower(ArrayList<int[]> arr, int x, int y, char[][] debug) {
 
-		if (x == arr.size() || arr.get(x)[y] != arr.get(x - 1)[y] + 1 || arr.get(x)[y] == 9) {
+		if (x == arr.size() || arr.get(x)[y] < arr.get(x - 1)[y] + 1 || arr.get(x)[y] == 9 || debug[x][y] == 'X') {
 			return 0;
-		}
-		return findBasin(arr, x, y, debug, size);
+		}else
+		return findBasin(arr, x, y, debug);
 	}
 
-	private static int sizeOfRight(ArrayList<int[]> arr, int x, int y, char[][] debug, int size) {
-		// TODO Auto-generated method stub
-		if (y == arr.get(x).length || arr.get(x)[y] != arr.get(x)[y - 1] + 1 || arr.get(x)[y] == 9) {
+	private static int sizeOfRight(ArrayList<int[]> arr, int x, int y, char[][] debug) {
+		if (y == arr.get(x).length || arr.get(x)[y] < arr.get(x)[y - 1] || arr.get(x)[y] == 9
+				|| debug[x][y] == 'X') {
 			return 0;
-		}
-		return findBasin(arr, x, y, debug, size);
+		}else
+		return findBasin(arr, x, y, debug);
 	}
 
-	private static int sizeOfLeft(ArrayList<int[]> arr, int x, int y, char[][] debug, int size) {
-		// TODO Auto-generated method stub
-		if (y == -1 || arr.get(x)[y] != arr.get(x)[y + 1] + 1 || arr.get(x)[y] == 9) {
+	private static int sizeOfLeft(ArrayList<int[]> arr, int x, int y, char[][] debug) {
+		if (y == -1 || arr.get(x)[y] < arr.get(x)[y + 1]  || arr.get(x)[y] == 9 || debug[x][y] == 'X') {
 			return 0;
-		}
-		return findBasin(arr, x, y, debug, size);
+		}else
+		return findBasin(arr, x, y, debug);
 	}
 }
