@@ -123,6 +123,26 @@ public class InputReader {
 		return arr;
 	}
 
+	public ArrayList<int[]> give2DArray() {
+		ArrayList<int[]> arr = new ArrayList<int[]>();
+		Scanner s = new Scanner(this.f);
+		while (s.hasNextLine()) {
+			String str = s.nextLine();
+			
+			int[] line = new int[str.length()];
+			String[] p = str.split("");
+			int i = 0;
+			for (String c : p) {
+				line[i] = Integer.parseInt(p[i]);
+				i++;
+			}
+			arr.add(line);
+		}
+		s.close();
+		createTime();
+		return arr;
+	}
+
 	public void print2Darray(int[][] array) {
 		for (int i = 0; i < array.length; i++) {
 			for (int j = 0; j < array.length; j++) {
