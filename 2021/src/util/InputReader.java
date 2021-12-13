@@ -41,11 +41,12 @@ public class InputReader {
 
 		return arr;
 	}
+
 	public ArrayList<String[]> splitStringList() {
 		Scanner s = new Scanner(this.f);
-		
+
 		ArrayList<String[]> arr = new ArrayList<String[]>();
-		while(s.hasNextLine()) {
+		while (s.hasNextLine()) {
 			String[] str = s.nextLine().split("");
 			arr.add(str);
 		}
@@ -53,32 +54,33 @@ public class InputReader {
 
 		return arr;
 	}
+
 	public ArrayList<ArrayList<String>> splitString() {
 		Scanner s = new Scanner(this.f);
-		
+
 		ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
-		while(s.hasNextLine()) {
-			
+		while (s.hasNextLine()) {
+
 			String[] str = s.nextLine().split("-");
 			boolean isInA = false;
 			boolean isInB = false;
 			for (int i = 0; i < arr.size(); i++) {
-				if(arr.get(i).get(0).equals(str[0])) {
+				if (arr.get(i).get(0).equals(str[0])) {
 					isInA = true;
 					arr.get(i).add(str[1]);
 				}
-				if(arr.get(i).get(0).equals(str[1])) {
+				if (arr.get(i).get(0).equals(str[1])) {
 					isInB = true;
 					arr.get(i).add(str[0]);
 				}
 			}
-			if(!isInA) {
+			if (!isInA) {
 				ArrayList<String> n = new ArrayList<String>();
 				n.add(str[0]);
 				n.add(str[1]);
 				arr.add(n);
 			}
-			if(!isInB) {
+			if (!isInB) {
 				ArrayList<String> n = new ArrayList<String>();
 				n.add(str[1]);
 				n.add(str[0]);
@@ -89,6 +91,7 @@ public class InputReader {
 
 		return arr;
 	}
+
 	public ArrayList<String> readStringList() {
 		ArrayList<String> arr = new ArrayList<String>();
 		Scanner s = new Scanner(this.f);
@@ -178,7 +181,7 @@ public class InputReader {
 		Scanner s = new Scanner(this.f);
 		while (s.hasNextLine()) {
 			String str = s.nextLine();
-			
+
 			int[] line = new int[str.length()];
 			String[] p = str.split("");
 			int i = 0;
@@ -187,6 +190,40 @@ public class InputReader {
 				i++;
 			}
 			arr.add(line);
+		}
+		s.close();
+		createTime();
+		return arr;
+	}
+
+	public ArrayList<int[]> giveFoldingArray() {
+		ArrayList<int[]> arr = new ArrayList<int[]>();
+		Scanner s = new Scanner(this.f);
+		while (s.hasNextLine()) {
+			String str = s.nextLine();
+			String[] coords = str.split(",");
+			if (str.equals("")) {
+				break;
+			}
+			int[] ar = new int[2];
+			ar[0] = Integer.parseInt(coords[0]);
+			ar[1] = Integer.parseInt(coords[1]);
+			arr.add(ar);
+		}
+		int[] sp = {Integer.MAX_VALUE};
+		arr.add(sp);
+		while (s.hasNextLine()) {
+			String str = s.nextLine();
+			String[] sA = str.split("fold along ");
+			String[] op = sA[1].split("=");
+			int[] ope = new int[2];
+			if (op[0].equals("x")) {
+				ope[0] = 0;
+			} else {
+				ope[0] = 1;
+			}
+			ope[1] = Integer.parseInt(op[1]);
+			arr.add(ope);
 		}
 		s.close();
 		createTime();
