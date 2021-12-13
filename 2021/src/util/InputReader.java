@@ -53,7 +53,42 @@ public class InputReader {
 
 		return arr;
 	}
+	public ArrayList<ArrayList<String>> splitString() {
+		Scanner s = new Scanner(this.f);
+		
+		ArrayList<ArrayList<String>> arr = new ArrayList<ArrayList<String>>();
+		while(s.hasNextLine()) {
+			
+			String[] str = s.nextLine().split("-");
+			boolean isInA = false;
+			boolean isInB = false;
+			for (int i = 0; i < arr.size(); i++) {
+				if(arr.get(i).get(0).equals(str[0])) {
+					isInA = true;
+					arr.get(i).add(str[1]);
+				}
+				if(arr.get(i).get(0).equals(str[1])) {
+					isInB = true;
+					arr.get(i).add(str[0]);
+				}
+			}
+			if(!isInA) {
+				ArrayList<String> n = new ArrayList<String>();
+				n.add(str[0]);
+				n.add(str[1]);
+				arr.add(n);
+			}
+			if(!isInB) {
+				ArrayList<String> n = new ArrayList<String>();
+				n.add(str[1]);
+				n.add(str[0]);
+				arr.add(n);
+			}
+		}
+		s.close();
 
+		return arr;
+	}
 	public ArrayList<String> readStringList() {
 		ArrayList<String> arr = new ArrayList<String>();
 		Scanner s = new Scanner(this.f);
@@ -79,6 +114,7 @@ public class InputReader {
 			cards.add(card);
 		}
 		createTime();
+		s.close();
 		return cards;
 	}
 
@@ -133,6 +169,7 @@ public class InputReader {
 			}
 		}
 		createTime();
+		s.close();
 		return arr;
 	}
 
