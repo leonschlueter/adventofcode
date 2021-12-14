@@ -8,6 +8,7 @@ public class InputReader {
 	InputStream f;
 	long time;
 	public long lastTime;
+	public LinkedList<Character> res;
 
 	public InputReader(String fileName) {
 		System.out.println("Reading from: " + fileName);
@@ -17,6 +18,7 @@ public class InputReader {
 		}
 		this.time = System.currentTimeMillis();
 		this.lastTime = 0;
+		this.res = new LinkedList<Character>();
 	}
 
 	public ArrayList<Integer> readIntegerList() {
@@ -210,7 +212,7 @@ public class InputReader {
 			ar[1] = Integer.parseInt(coords[1]);
 			arr.add(ar);
 		}
-		int[] sp = {Integer.MAX_VALUE};
+		int[] sp = { Integer.MAX_VALUE };
 		arr.add(sp);
 		while (s.hasNextLine()) {
 			String str = s.nextLine();
@@ -228,6 +230,25 @@ public class InputReader {
 		s.close();
 		createTime();
 		return arr;
+	}
+
+	public HashMap<String, String> getFourTeen() {
+		Scanner s = new Scanner(this.f);
+		String beg = s.nextLine();
+
+		for (int i = 0; i < beg.length(); i++) {
+			this.res.add(beg.charAt(i));
+		}
+		s.nextLine();
+		HashMap<String, String> map = new HashMap<String, String>();
+		while (s.hasNextLine()) {
+			String line = s.nextLine();
+			String[] sp = line.split(" -> ");
+			map.put(sp[0], sp[1]);
+		}
+
+		s.close();
+		return map;
 	}
 
 	public void print2Darray(int[][] array) {
