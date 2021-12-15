@@ -1,6 +1,7 @@
 package days;
 
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 import util.InputReader;
 import util.Node;
@@ -46,32 +47,36 @@ public class DayFifteen {
 
 	private static int dijkstra(ArrayList<ArrayList<Integer>> map) {
 		ArrayList<Node> list = new ArrayList<Node>();
-		ArrayList<Node> q = new ArrayList<Node>();
+		PriorityQueue<Node> q = new PriorityQueue<Node>();
 		Node[][] nodes = new Node[map.size()][map.get(0).size()];
 		for (int i = 0; i < nodes.length; i++) {
 			for (int j = 0; j < nodes[0].length; j++) {
 				nodes[i][j] = new Node(map.get(i).get(j));
 				list.add(nodes[i][j]);
-				q.add(nodes[i][j]);
+
 			}
 		}
+		Node s = nodes[0][0];
+		s.distance = 0;
 		for (int i = 0; i < nodes.length; i++) {
 			for (int j = 0; j < nodes[0].length; j++) {
 				nodes[i][j].addNeighbors(nodes, i, j);
+				q.add(nodes[i][j]);
 			}
 		}
 		// Task A:
-		Node s = nodes[0][0];
-		s.distance = 0;
+
 		while (q.size() > 0) {
-			Node u = findSmallestDistance(q);
-			q.remove(q.indexOf(u));
+			Node u = q.poll();
 			for (Node v : u.neighbors) {
 				int alt = u.distance + v.cost;
 				if (alt < v.distance) {
+					q.remove(v);
 					v.distance = alt;
 					v.previous = u;
+					q.add(v);
 				}
+
 			}
 		}
 
