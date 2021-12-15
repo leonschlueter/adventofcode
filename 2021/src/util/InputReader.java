@@ -197,7 +197,24 @@ public class InputReader {
 		createTime();
 		return arr;
 	}
+	public ArrayList<ArrayList<Integer>> give2DArrayList() {
+		ArrayList<ArrayList<Integer>> arr = new ArrayList<ArrayList<Integer>>();
+		Scanner s = new Scanner(this.f);
+		while (s.hasNextLine()) {
+			String str = s.nextLine();
 
+		
+			ArrayList<Integer> line = new ArrayList<Integer>();
+			String[] p = str.split("");
+			for (String c : p) {
+				line.add(Integer.parseInt(c));
+			}
+			arr.add(line);
+		}
+		s.close();
+		createTime();
+		return arr;
+	}
 	public ArrayList<int[]> giveFoldingArray() {
 		ArrayList<int[]> arr = new ArrayList<int[]>();
 		Scanner s = new Scanner(this.f);
