@@ -53,6 +53,61 @@ public class Operator extends Packet {
 		return val;
 	}
 
+	private void getVersionSum() {
+
+		long s = version;
+		for (Packet p : subpackets) {
+			if (p.type.equals("literal")) {
+				s += p.version;
+			} else {
+				Operator o = (Operator) p;
+				s += o.versionSum;
+			}
+		}
+		this.versionSum = s;
+
+	}
+
+	private void createSubpackets(int lenOfSubPackets) {
+		int start = this.endIndex;
+		ArrayList<Packet> pa = new ArrayList<Packet>();
+		while (endIndex - start < lenOfSubPackets) {
+			Packet p;
+			if (Integer.parseInt(bin.substring(3 + endIndex, 6 + endIndex), 2) == 4) {
+				p = new Literal(bin, endIndex);
+			} else {
+				p = new Operator(bin, endIndex);
+			}
+			this.endIndex = p.endIndex;
+			pa.add(p);
+
+		}
+		this.subpackets = new Packet[pa.size()];
+		for (int i = 0; i < subpackets.length; i++) {
+			subpackets[i] = pa.get(i);
+		}
+	}
+
+	private void createSubpacketsNum(int num) {
+		ArrayList<Packet> pa = new ArrayList<Packet>();
+		for (int i = 0; i < num; i++) {
+			Packet p;
+			if (Integer.parseInt(bin.substring(3 + endIndex, 6 + endIndex), 2) == 4) {
+				p = new Literal(bin, endIndex);
+			} else {
+				p = new Operator(bin, endIndex);
+			}
+			this.endIndex = p.endIndex;
+			pa.add(p);
+
+		}
+		this.subpackets = new Packet[pa.size()];
+		for (int i = 0; i < subpackets.length; i++) {
+			subpackets[i] = pa.get(i);
+		}
+	}
+
+//Operation values:
 	private long eq() {
 		if (this.subpackets[0].value == this.subpackets[1].value) {
 			return 1;
@@ -112,60 +167,6 @@ public class Operator extends Packet {
 			v += subpackets[i].value;
 		}
 		return v;
-	}
-
-	private void getVersionSum() {
-
-		long s = version;
-		for (Packet p : subpackets) {
-			if (p.type.equals("literal")) {
-				s += p.version;
-			} else {
-				Operator o = (Operator) p;
-				s += o.versionSum;
-			}
-		}
-		this.versionSum = s;
-
-	}
-
-	private void createSubpackets(int lenOfSubPackets) {
-		int start = this.endIndex;
-		ArrayList<Packet> pa = new ArrayList<Packet>();
-		while (endIndex - start < lenOfSubPackets) {
-			Packet p;
-			if (Integer.parseInt(bin.substring(3 + endIndex, 6 + endIndex), 2) == 4) {
-				p = new Literal(bin, endIndex);
-			} else {
-				p = new Operator(bin, endIndex);
-			}
-			this.endIndex = p.endIndex;
-			pa.add(p);
-
-		}
-		this.subpackets = new Packet[pa.size()];
-		for (int i = 0; i < subpackets.length; i++) {
-			subpackets[i] = pa.get(i);
-		}
-	}
-
-	private void createSubpacketsNum(int num) {
-		ArrayList<Packet> pa = new ArrayList<Packet>();
-		for (int i = 0; i < num; i++) {
-			Packet p;
-			if (Integer.parseInt(bin.substring(3 + endIndex, 6 + endIndex), 2) == 4) {
-				p = new Literal(bin, endIndex);
-			} else {
-				p = new Operator(bin, endIndex);
-			}
-			this.endIndex = p.endIndex;
-			pa.add(p);
-
-		}
-		this.subpackets = new Packet[pa.size()];
-		for (int i = 0; i < subpackets.length; i++) {
-			subpackets[i] = pa.get(i);
-		}
 	}
 
 	public void printSubpackets() {
