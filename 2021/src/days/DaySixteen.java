@@ -1,29 +1,24 @@
 package days;
 
 import util.InputReader;
-import util.Literal;
+import util.Operator;
+import util.Packet;
 
 public class DaySixteen {
 	public static void main(String[] args) {
 		// Read input and return array
-		InputReader ir = new InputReader("selfTests.txt");
+		InputReader ir = new InputReader("daySixteen.txt");
 		String bin = ir.getBinVal();
-		System.out.println(bin);
 		long beginTime = System.currentTimeMillis();
 		// Task A:
-		Literal test = new Literal(bin);
-		test.printPacket();
-		
-		
-		
-		
+		Packet a = new Operator(bin, 0);	
 		long taskAtime = (System.currentTimeMillis() - beginTime);
 		System.out.println("====[RESULT]====");
-		System.out.println();
+		System.out.println("Task A: "+a.versionSum);
 		beginTime = System.currentTimeMillis();
 		// Task B:
 
-		System.out.println();
+		System.out.println("Task B: "+ a.value);
 		long taskBtime = (System.currentTimeMillis() - beginTime);
 		System.out.println("=====[TIME]=====");
 		System.out.println("Time Task A: " + taskAtime + "ms");
