@@ -9,7 +9,7 @@ public class DayThirteen {
 
 	public static void main(String[] args) {
 		// Read input and return array
-		InputReader ir = new InputReader("dayThirteen.txt");
+		InputReader ir = new InputReader("selfTests.txt");
 		ArrayList<int[]> arr = ir.giveFoldingArray();
 		long beginTime = System.currentTimeMillis();
 

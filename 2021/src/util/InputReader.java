@@ -304,7 +304,18 @@ public class InputReader {
 			System.out.println();
 		}
 	}
-
+	public int[][] getSeventeen() {
+		Scanner s  = new Scanner(this.f);
+		int[][] area = new int[2][2];
+		area[0][0] = s.nextInt();
+		area[1][0] = s.nextInt();
+		area[0][1] = s.nextInt();
+		area[1][1] = s.nextInt();
+		s.close();
+		createTime();
+		return area;
+		
+	}
 	private void createTime() {
 		this.lastTime = System.currentTimeMillis() - time;
 		System.out.println("Input time taken: " + lastTime + "ms");
