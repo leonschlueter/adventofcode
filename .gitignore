@@ -1,0 +1,6 @@
+#c++ files
+*.o
+*.a
+*.so
+#c++ executable
+adventofcode/*/*/a.out
