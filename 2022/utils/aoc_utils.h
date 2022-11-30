@@ -2,25 +2,24 @@
 #define AOC_INPUT
 
 #include <fstream>
-#include <vector>
-#include <sstream>
 #include <iostream>
+#include <sstream>
+#include <vector>
 
 /*
     Returns a vector of integers from given input file, assuming the file contains only integers.
     @param filename - The name of the file.
     @return vector of integers with input from original file
 */
-std::vector<int> get_singleint_input(std::string filename){
-
+std::vector<int> get_singleint_input(std::string filename) {
     std::ifstream file(filename);
     int x;
     std::vector<int> vec;
 
-    while(file >> x){
+    while (file >> x) {
         vec.push_back(x);
     }
-    std::cout << "Data parsing into single vector done."<<'\n';
+    std::cout << "Data parsing into single vector done." << '\n';
     return vec;
 }
 
@@ -29,21 +28,21 @@ std::vector<int> get_singleint_input(std::string filename){
     @param filename - The name of the file.
     @return 2D vector of integers with input from original file
 */
-std::vector<std::vector<int>> get_int_input(std::string filename){
+std::vector<std::vector<int>> get_int_input(std::string filename) {
     std::string line;
     std::ifstream file(filename);
     std::vector<std::vector<int>> matrix;
 
-    while(std::getline(file, line, '\n')){
+    while (std::getline(file, line, '\n')) {
         std::stringstream ss(line);
-        std::vector<int> row; 
-        int x; 
-        while(ss >> x){
+        std::vector<int> row;
+        int x;
+        while (ss >> x) {
             row.push_back(x);
         }
         matrix.push_back(row);
     }
-    std::cout << "Data parsing into multivector done."<<'\n';
+    std::cout << "Data parsing into multivector done." << '\n';
     return matrix;
 }
 
@@ -52,23 +51,23 @@ std::vector<std::vector<int>> get_int_input(std::string filename){
     @param filename - The name of the file.
     @return vector of strings with lines from original file
 */
-std::vector<std::string> get_string(std::string filename){
+std::vector<std::string> get_string(std::string filename) {
     std::string line;
     std::ifstream file(filename);
     std::vector<std::string> vec;
-    while(std::getline(file, line)){
+    while (std::getline(file, line)) {
         vec.push_back(line);
     }
-    return vec; 
+    return vec;
 }
 
 /*
-    Prints integers from vector into console. 
+    Prints integers from vector into console.
     @param vec - pointer to a vector of integers
-    @return void 
+    @return void
 */
-void print_vector(std::vector<int> &vec){
-    for(int i : vec){
+void print_vector(std::vector<int> &vec) {
+    for (int i : vec) {
         std::cout << i << ' ';
     }
     std::cout << '\n';
@@ -76,15 +75,15 @@ void print_vector(std::vector<int> &vec){
 }
 
 /*
-    Prints integers from 2D vector into console. 
+    Prints integers from 2D vector into console.
     @param vec - pointer to a 2D vector of integers
-    @return void 
+    @return void
 */
-void print_multivector(std::vector<std::vector<int>> &vec){
-    for(std::vector<int> v : vec){
-       print_vector(v);
+void print_multivector(std::vector<std::vector<int>> &vec) {
+    for (std::vector<int> v : vec) {
+        print_vector(v);
     }
-   
+
     return;
 }
 #endif
