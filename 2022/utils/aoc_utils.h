@@ -11,13 +11,13 @@ std::vector<int> get_singleint_input(std::string filename){
 
     std::ifstream file(filename);
     int x;
-    std::vector<int> invec;
+    std::vector<int> vec;
 
     while(file >> x){
-        invec.push_back(x);
+        vec.push_back(x);
     }
     std::cout << "Data parsing into single vector done."<<'\n';
-    return invec;
+    return vec;
 }
 
 //reads input from file and puts it into 2d array
@@ -38,6 +38,17 @@ std::vector<std::vector<int>> get_int_input(std::string filename){
     std::cout << "Data parsing into multivector done."<<'\n';
     return matrix;
 }
+
+std::vector<std::string> get_string(std::string filename){
+    std::string line;
+    std::ifstream file(filename);
+    std::vector<std::string> vec;
+    while(std::getline(file, line)){
+        vec.push_back(line);
+    }
+    return vec; 
+}
+
 
 void print_vector(std::vector<int> vec){
     for(int i : vec){
