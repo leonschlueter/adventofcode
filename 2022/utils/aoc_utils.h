@@ -6,7 +6,11 @@
 #include <sstream>
 #include <iostream>
 
-//Reads input from file and puts every single int into vector
+/*
+    Returns a vector of integers from given input file, assuming the file contains only integers.
+    @param filename - The name of the file.
+    @return vector of integers with input from original file
+*/
 std::vector<int> get_singleint_input(std::string filename){
 
     std::ifstream file(filename);
@@ -20,7 +24,11 @@ std::vector<int> get_singleint_input(std::string filename){
     return vec;
 }
 
-//reads input from file and puts it into 2d array
+/*
+    Returns a 2D vector of integers from given input file, assuming the file contains only integers.
+    @param filename - The name of the file.
+    @return 2D vector of integers with input from original file
+*/
 std::vector<std::vector<int>> get_int_input(std::string filename){
     std::string line;
     std::ifstream file(filename);
@@ -39,6 +47,11 @@ std::vector<std::vector<int>> get_int_input(std::string filename){
     return matrix;
 }
 
+/*
+    Returns each line as a string in a vector with the given input file.
+    @param filename - The name of the file.
+    @return vector of strings with lines from original file
+*/
 std::vector<std::string> get_string(std::string filename){
     std::string line;
     std::ifstream file(filename);
@@ -49,8 +62,12 @@ std::vector<std::string> get_string(std::string filename){
     return vec; 
 }
 
-
-void print_vector(std::vector<int> vec){
+/*
+    Prints integers from vector into console. 
+    @param vec - pointer to a vector of integers
+    @return void 
+*/
+void print_vector(std::vector<int> &vec){
     for(int i : vec){
         std::cout << i << ' ';
     }
@@ -58,7 +75,12 @@ void print_vector(std::vector<int> vec){
     return;
 }
 
-void print_multivector(std::vector<std::vector<int>> vec){
+/*
+    Prints integers from 2D vector into console. 
+    @param vec - pointer to a 2D vector of integers
+    @return void 
+*/
+void print_multivector(std::vector<std::vector<int>> &vec){
     for(std::vector<int> v : vec){
        print_vector(v);
     }
