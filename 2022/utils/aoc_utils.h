@@ -8,7 +8,7 @@
 
 /*
     Returns a vector of integers from given input file, assuming the file contains only integers.
-    @param filename - The name of the file.
+    @param filename The name of the file.
     @return vector of integers with input from original file
 */
 std::vector<int> get_singleint_input(std::string filename) {
@@ -25,7 +25,7 @@ std::vector<int> get_singleint_input(std::string filename) {
 
 /*
     Returns a 2D vector of integers from given input file, assuming the file contains only integers.
-    @param filename - The name of the file.
+    @param filename The name of the file.
     @return 2D vector of integers with input from original file
 */
 std::vector<std::vector<int>> get_int_input(std::string filename) {
@@ -48,7 +48,7 @@ std::vector<std::vector<int>> get_int_input(std::string filename) {
 
 /*
     Returns each line as a string in a vector with the given input file.
-    @param filename - The name of the file.
+    @param filename The name of the file.
     @return vector of strings with lines from original file
 */
 std::vector<std::string> get_string(std::string filename) {
@@ -63,7 +63,7 @@ std::vector<std::string> get_string(std::string filename) {
 
 /*
     Prints integers from vector into console.
-    @param vec - pointer to a vector of integers
+    @param vec pointer to a vector of integers
     @return void
 */
 void print_vector(std::vector<int> &vec) {
