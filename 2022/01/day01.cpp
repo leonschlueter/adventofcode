@@ -1,5 +1,4 @@
-#include <fstream>     
-#include <iostream>
+#include <bits/stdc++.h>
 #include "../utils/aoc_utils.h"
 
 int main(int argc, char const *argv[])
