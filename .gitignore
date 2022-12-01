@@ -4,3 +4,4 @@
 *.so
 #c++ executable
 adventofcode/*/*/a.out
+adventofcode/*/*/.vscode/
