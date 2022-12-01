@@ -6,7 +6,7 @@ The challenges were done in Java.
 The challenges will be done in C++.
 | Days  | Stars |
 |-------|-------|
-| Day 1 |       |
+| Day 1 |  ⭐⭐ |
 | Day 2 |       |
 | Day 3 |       |
 | Day 4 |       |
