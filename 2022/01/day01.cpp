@@ -12,7 +12,6 @@ int main(int argc, char const *argv[]) {
     std::string filename = argv[1];
 
     int* elves = parse_input(filename);
-    std::sort(elves, elves+3);
 
     std::cout << "Part 1: " << elves[2] << "\n";
     std::cout << "Part 2: " << (elves[0] + elves[1] + elves[2]) << "\n";
