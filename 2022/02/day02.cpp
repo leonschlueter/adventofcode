@@ -1,8 +1,6 @@
 #include "day02.h"
-
 #include <bits/stdc++.h>
 
-#include "../utils/aoc_utils.h"
 
 int main(int argc, char const *argv[]) {
     std::cout << "========== DAY 2 ==========\n";
