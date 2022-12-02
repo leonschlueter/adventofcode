@@ -1,29 +1,26 @@
-#include "day01.h"
+#include "day01.hpp"
 
 #include <bits/stdc++.h>
 
 #include "../utils/aoc_utils.h"
 
-int main(int argc, char const *argv[]) {
-    std::cout << "========== DAY 1 ==========\n";
-    if (argc != 2) {
-        std::cout << "NOT ENOUGH ARGS \n";
-    }
-    std::string filename = argv[1];
-
-    int* elves = parse_input(filename);
-
-    std::cout << "Part 1: " << elves[2] << "\n";
-    std::cout << "Part 2: " << (elves[0] + elves[1] + elves[2]) << "\n";
-    return 0;
+DayOne::DayOne(std::string filename){
+    this->filename = filename;
+    int* elves = this->parse_input(filename);
+   
+    this->part_one = elves[2];
+    this->part_two = elves[0] + elves[1] + elves[2];
 }
+
+
+
 
 /*
     Parses the given input file into an array with size 3, with three elves with the most food are stored.
     @param filename The name of the file.
     @return Array of size 3, with the amount of food of the 3 biggest elves. 
 */
-int* parse_input(std::string &filename) {
+int* DayOne::parse_input(std::string &filename) {
     std::ifstream file(filename);
     int x = 0;
     static int arr[3] = {0, 0, 0};
@@ -49,4 +46,11 @@ int* parse_input(std::string &filename) {
         }
     }
     return arr;
+}
+
+int DayOne::getPartOne(){
+    return this->part_one;
+}
+int DayOne::getPartTwo(){
+    return this->part_two;
 }

@@ -1,26 +1,19 @@
-#include "day02.h"
+#include "day02.hpp"
 #include <bits/stdc++.h>
 
-
-int main(int argc, char const *argv[]) {
-    std::cout << "========== DAY 2 ==========\n";
-    if (argc != 2) {
-        std::cout << "NOT ENOUGH ARGS \n";
-    }
-    std::string filename = argv[1];
-
-    std::vector<std::vector<int>> input = parse_input(filename);
-    int resultA = 0;
-    int resultB = 0;
+DayTwo::DayTwo(std::string filename){
+    this->filename = filename;
+    this->part_one = 0;
+    this->part_two = 0;
+    std::vector<std::vector<int>> input = this->parse_input(filename);
+   
     for (auto vec : input) {
-        resultA += calculate_scoreA(vec);
-        resultB += calculate_scoreB(vec);
+        
+        this->part_one += this->calculate_scoreA(vec);
+        this->part_two += this->calculate_scoreB(vec);
     }
-
-    std::cout << "Part 1: " << resultA << "\n";
-    std::cout << "Part 2: " << resultB << "\n";
-    return 0;
 }
+
 
 /*
     Calculates the score of a vector<int> with length 2, where:
@@ -28,7 +21,8 @@ int main(int argc, char const *argv[]) {
     @param match A vector<int> [a, b] of length 2, where a is the form of enemy and b is your form
     @return Score of match: Form chosen + 0/3/6 depending on loss/draw/win
 */
-int calculate_scoreA(std::vector<int> match) {
+int DayTwo::calculate_scoreA(std::vector<int> match) {
+    
     int result = 0;
     int a = match[0];
     int b = match[1];
@@ -48,7 +42,7 @@ int calculate_scoreA(std::vector<int> match) {
     @param match A vector<int> [a, b] of length 2, where a is the form of enemy and b stands for loss/draw/win
     @return Score of match: Form chosen + 0/3/6 depending on loss/draw/win
 */
-int calculate_scoreB(std::vector<int> match) {
+int DayTwo::calculate_scoreB(std::vector<int> match) {
     int result = 0;
     int a = match[0];
     int b = match[1];
@@ -79,7 +73,7 @@ int calculate_scoreB(std::vector<int> match) {
     @param filename The name of the file.
     @return Parsed input of day 2.
 */
-std::vector<std::vector<int>> parse_input(std::string &filename) {
+std::vector<std::vector<int>> DayTwo::parse_input(std::string &filename) {
     std::ifstream file(filename);
     std::vector<std::vector<int>> input;
     std::string line;
@@ -99,4 +93,11 @@ std::vector<std::vector<int>> parse_input(std::string &filename) {
     }
 
     return input;
+}
+
+int DayTwo::getPartOne(){
+    return this->part_one;
+}
+int DayTwo::getPartTwo(){
+    return this->part_two;
 }
