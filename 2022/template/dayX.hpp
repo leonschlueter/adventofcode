@@ -1,9 +1,9 @@
 #include <map>
 #include <string>
 #include <vector>
-class DayFour {
+class DayX {
    public:
-    DayFour(std::string filename);
+    DayX(std::string filename);
     int getPartOne();
     int getPartTwo();
 

@@ -3,6 +3,7 @@
 #include "01/day01.hpp"
 #include "02/day02.hpp"
 #include "03/day03.hpp"
+#include "04/day04.hpp"
 
 #include <iostream>
 
@@ -53,7 +54,7 @@ int main(int argc, char const *argv[]) {
     DayOne dayOne("01/01");
     DayTwo dayTwo("02/02");
     DayThree dayThree("03/03");
-
+    DayFour dayFour ("04/04");
 
     // Print line per day:
     int one_a = dayOne.getPartOne();
@@ -68,7 +69,10 @@ int main(int argc, char const *argv[]) {
     int three_b = dayThree.getPartTwo();
     print_sol_line("03", three_a, three_b, part_space, 1);
 
-    print_sol_line("04", 0, 0, part_space, 0);
+    int four_a = dayFour.getPartOne();
+    int four_b = dayFour.getPartTwo(); 
+    print_sol_line("04", four_a, four_b, part_space, 1);
+    
     print_sol_line("05", 0, 0, part_space, 0);
     print_sol_line("06", 0, 0, part_space, 0);
     print_sol_line("07", 0, 0, part_space, 0);
