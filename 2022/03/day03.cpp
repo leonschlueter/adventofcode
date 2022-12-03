@@ -40,14 +40,11 @@ int DayThree::calculate_scoreA(std::vector<std::vector<std::string>> input, std:
         for(char item : firstCompartment){
 
             if(secondCompartment.find(item) < secondCompartment.length()){
-                std::map<char, int>::iterator it;
-                for(it=map.begin(); it!=map.end(); ++it){
-                    
-                    if(it->first == item && add < it->second){
-                        add = it->second;
-                        
+              int score = map[item];
+                    if(add < score){
+                        add = score;
                     }
-                }
+                
             }  
         }
         result += add;
@@ -76,33 +73,14 @@ int DayThree::calculate_scoreB(std::vector<std::vector<std::string>> input,  std
        
         int add = 0;
         for(char item : firstRucksack){
-            std::map<char, int>::iterator it;
-                for(it=map.begin(); it!=map.end(); ++it){
-                    if(it->first == item){
-                        int index = it->second;
-                       containsA[index-1]++;
-                    }
-                }
-            
+            containsA[map[item] - 1]++;
         }
         for(char item : secondRucksack){
-            std::map<char, int>::iterator it;
-                for(it=map.begin(); it!=map.end(); ++it){
-                    if(it->first == item){
-                        int index = it->second;
-                       containsB[index-1]++;
-                    }
-                }
+             containsB[map[item] - 1]++;
             
         }
         for(char item : thirdRucksack){
-            std::map<char, int>::iterator it;
-                for(it=map.begin(); it!=map.end(); ++it){
-                    if(it->first == item){
-                        int index = it->second;
-                       containsC[index-1]++;
-                    }
-                }
+           containsC[map[item] - 1]++;
             
         }
         for(int j = 0; j<52; j++){
