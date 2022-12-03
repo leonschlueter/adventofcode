@@ -3,27 +3,55 @@
 #include <vector>
 #include <sstream>
 #include <fstream>
+#include <map>
+#include <iostream>
+#include <iterator>
 
 DayThree::DayThree(std::string filename){
     this->filename = filename;
     
-    std::vector<std::vector<int>> input = this->parse_input(filename);
-    this->part_one = this->calculate_scoreA();
-    this->part_two = this->calculate_scoreB();
+    std::vector<std::vector<std::string>> input = this->parse_input(filename);
+    std::map<char, int> map;
+    char letterLow= 'a';
+    char letterUpper = 'A';
+    for(int i = 1; i < 27; i++){
+        //std::cout << letterLow << " " << i<< "  " << letterUpper << " " << (i+26) << "\n";
+        map[letterLow] = i;
+        map[letterUpper] = 26+i;
+        letterLow++;
+        letterUpper++;
+        
+    }
+
+
+    this->part_one = this->calculate_scoreA(input, map);
+    this->part_two = this->calculate_scoreB(input, map);
    
 }
 
 
-/*
-    Calculates the score of a vector<int> with length 2, where:
-    1 = Stone, 2 = Paper, 3 = Scissors for both entries.
-    @param match A vector<int> [a, b] of length 2, where a is the form of enemy and b is your form
-    @return Score of match: Form chosen + 0/3/6 depending on loss/draw/win
-*/
-int DayThree::calculate_scoreA() {
-    
+
+int DayThree::calculate_scoreA(std::vector<std::vector<std::string>> input, std::map<char, int> map) {
     int result = 0;
-   
+    for(auto rucksack : input){
+        std::string firstCompartment = rucksack[0];
+        std::string secondCompartment = rucksack[1];
+        int add = 0;
+        for(char item : firstCompartment){
+
+            if(secondCompartment.find(item) < secondCompartment.length()){
+                std::map<char, int>::iterator it;
+                for(it=map.begin(); it!=map.end(); ++it){
+                    
+                    if(it->first == item && add < it->second){
+                        add = it->second;
+                        
+                    }
+                }
+            }  
+        }
+        result += add;
+    }
     return result;
 }
 
@@ -33,10 +61,59 @@ int DayThree::calculate_scoreA() {
     @param match A vector<int> [a, b] of length 2, where a is the form of enemy and b stands for loss/draw/win
     @return Score of match: Form chosen + 0/3/6 depending on loss/draw/win
 */
-int DayThree::calculate_scoreB() {
+int DayThree::calculate_scoreB(std::vector<std::vector<std::string>> input,  std::map<char, int> map) {
     int result = 0;
-    
+    for(int i = 0; i<input.size()/3; i++){
+        //std::cout << i << '\n';
+        int pos = i*3;
+        std::string firstRucksack = input[pos][0] + input[pos][1];
+        std::string secondRucksack = input[pos+1][0] + input[pos+1][1];
+        std::string thirdRucksack = input[pos+2][0] + input[pos+2][1];
 
+        int containsA [52] = {0};
+        int containsB [52] = {0};
+        int containsC [52] = {0};
+       
+        int add = 0;
+        for(char item : firstRucksack){
+            std::map<char, int>::iterator it;
+                for(it=map.begin(); it!=map.end(); ++it){
+                    if(it->first == item){
+                        int index = it->second;
+                       containsA[index-1]++;
+                    }
+                }
+            
+        }
+        for(char item : secondRucksack){
+            std::map<char, int>::iterator it;
+                for(it=map.begin(); it!=map.end(); ++it){
+                    if(it->first == item){
+                        int index = it->second;
+                       containsB[index-1]++;
+                    }
+                }
+            
+        }
+        for(char item : thirdRucksack){
+            std::map<char, int>::iterator it;
+                for(it=map.begin(); it!=map.end(); ++it){
+                    if(it->first == item){
+                        int index = it->second;
+                       containsC[index-1]++;
+                    }
+                }
+            
+        }
+        for(int j = 0; j<52; j++){
+            
+            if(containsA[j] >= 1 && containsB[j] >= 1 && containsC[j]>= 1){
+                //std::cout << "All contain "<<j<<'\n';
+                add = j+1;
+            }
+        }
+        result += add;
+    }
     return result;
 }
 
@@ -45,12 +122,18 @@ int DayThree::calculate_scoreB() {
     @param filename The name of the file.
     @return Parsed input of day 3.
 */
-std::vector<std::vector<int>> DayThree::parse_input(std::string &filename) {
+std::vector<std::vector<std::string>> DayThree::parse_input(std::string &filename) {
     std::ifstream file(filename);
-    std::vector<std::vector<int>> input;
+    std::vector<std::vector<std::string>> input;
     std::string line;
     while (std::getline(file, line)) {
-        
+        std::string half = line.substr(0, line.length()/2);
+        std::string otherHalf = line.substr(line.length()/2);
+        std::vector<std::string> rucksack;
+        rucksack.push_back(half);
+        rucksack.push_back(otherHalf);
+
+        input.push_back(rucksack);
     }
 
     return input;
