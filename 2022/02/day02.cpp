@@ -1,5 +1,8 @@
 #include "day02.hpp"
-#include <bits/stdc++.h>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <fstream>
 
 DayTwo::DayTwo(std::string filename){
     this->filename = filename;

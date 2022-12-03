@@ -1,6 +1,9 @@
 #include "day01.hpp"
 
-#include <bits/stdc++.h>
+#include <string>
+#include <vector>
+#include <sstream>
+#include <fstream>
 
 #include "../utils/aoc_utils.h"
 

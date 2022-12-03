@@ -1,10 +1,10 @@
 #include "main.hpp"
 
-#include <bits/stdc++.h>
-
 #include "01/day01.hpp"
 #include "02/day02.hpp"
 #include "03/day03.hpp"
+
+#include <iostream>
 
 int main(int argc, char const *argv[]) {
     std::cout << "Advent Of Code 2022\n";
