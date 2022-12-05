@@ -67,33 +67,33 @@ int main(int argc, char const *argv[]) {
     DayFour dayFour("04/04");
     times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
-    DayFive dayFive("05/05_test");
+    DayFive dayFive("05/05");
     times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayX dayX("x");
     times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     // Print line per day:
-    int one_a = dayOne.getPartOne();
-    int one_b = dayOne.getPartTwo();
+    std::string one_a = std::to_string(dayOne.getPartOne());
+    std::string one_b = std::to_string(dayOne.getPartTwo());
     print_sol_line("01", one_a, one_b, part_space, 1);
 
-    int two_a = dayTwo.getPartOne();
-    int two_b = dayTwo.getPartTwo();
+    std::string two_a = std::to_string(dayTwo.getPartOne());
+    std::string two_b = std::to_string(dayTwo.getPartTwo());
     print_sol_line("02", two_a, two_b, part_space, 1);
 
-    int three_a = dayThree.getPartOne();
-    int three_b = dayThree.getPartTwo();
+    std::string three_a = std::to_string(dayThree.getPartOne());
+    std::string three_b = std::to_string(dayThree.getPartTwo());
     print_sol_line("03", three_a, three_b, part_space, 1);
 
-    int four_a = dayFour.getPartOne();
-    int four_b = dayFour.getPartTwo();
+    std::string four_a = std::to_string(dayFour.getPartOne());
+    std::string four_b = std::to_string(dayFour.getPartTwo());
     print_sol_line("04", four_a, four_b, part_space, 1);
 
-    int five_a = dayFive.getPartOne();
-    int five_b = dayFive.getPartTwo();
+    std::string five_a = dayFive.getPartOne();
+    std::string five_b = dayFive.getPartTwo();
     print_sol_line("05", five_a, five_b, part_space, 1);
-
+/*
     int six_a = dayX.getPartOne();
     int six_b = dayX.getPartTwo();
     print_sol_line("06", six_a, six_b, part_space, 0);
@@ -158,7 +158,7 @@ int main(int argc, char const *argv[]) {
     int twentyfive_a = dayX.getPartOne();
     int twentyfive_b = dayX.getPartTwo();
     print_sol_line("05", twentyfive_a, twentyfive_b, part_space, 0);
-
+*/
     for (size_t i = 0; i < total; i++) {
         std::cout << "\033[1;35m"
                   << "-"
@@ -173,10 +173,10 @@ int main(int argc, char const *argv[]) {
     return 0;
 }
 
-void print_sol_line(std::string day, int a, int b, int part_space, int color) {
+void print_sol_line(std::string day, std::string a, std::string b, int part_space, int color) {
     int len = 0;
-    int a_space = part_space - std::to_string(a).length();
-    int b_space = part_space - std::to_string(b).length();
+    int a_space = part_space - a.length();
+    int b_space = part_space - b.length();
     std::string col = "\033[0m";
     if (color == 0) {
         col = "\033[0m";

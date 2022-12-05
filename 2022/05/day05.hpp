@@ -5,15 +5,15 @@
 class DayFive {
    public:
     DayFive(std::string filename);
-    int getPartOne();
-    int getPartTwo();
+    std::string getPartOne();
+    std::string getPartTwo();
 
    private:
     std::string filename;
-    int part_one;
-    int part_two;
+    std::string part_one;
+    std::string part_two;
 
-    int calculate_scoreA(std::vector<std::stack<char>> input);
-    int calculate_scoreB(std::vector<std::stack<char>> input);
+    std::string calculate_scoreA(std::vector<std::stack<char>> piles, std::vector<std::vector<int>> instructions);
+    std::string calculate_scoreB(std::vector<std::stack<char>> piles, std::vector<std::vector<int>> instructions);
     std::vector<std::stack<char>> parse_input(std::string &filename);
 };
