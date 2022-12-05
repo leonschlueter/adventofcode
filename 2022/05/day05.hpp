@@ -1,6 +1,7 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <stack>
 class DayFive {
    public:
     DayFive(std::string filename);
@@ -12,7 +13,7 @@ class DayFive {
     int part_one;
     int part_two;
 
-    int calculate_scoreA(std::vector<std::vector<int>> input);
-    int calculate_scoreB(std::vector<std::vector<int>> input);
-    std::vector<std::vector<int>> parse_input(std::string &filename);
+    int calculate_scoreA(std::vector<std::stack<char>> input);
+    int calculate_scoreB(std::vector<std::stack<char>> input);
+    std::vector<std::stack<char>> parse_input(std::string &filename);
 };

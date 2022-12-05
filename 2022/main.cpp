@@ -67,7 +67,7 @@ int main(int argc, char const *argv[]) {
     DayFour dayFour("04/04");
     times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
-    DayFive dayFive("05/05");
+    DayFive dayFive("05/05_test");
     times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayX dayX("x");
@@ -141,23 +141,23 @@ int main(int argc, char const *argv[]) {
     print_sol_line("09", twenty_a, twenty_b, part_space, 0);
     int twentyone_a = dayX.getPartOne();
     int twentyone_b = dayX.getPartTwo();
-    print_sol_line("01", twentyone_a, twentyone_b, part_space, 1);
+    print_sol_line("01", twentyone_a, twentyone_b, part_space, 0);
 
     int twentytwo_a = dayX.getPartOne();
     int twentytwo_b = dayX.getPartTwo();
-    print_sol_line("02", twentytwo_a, twentytwo_b, part_space, 1);
+    print_sol_line("02", twentytwo_a, twentytwo_b, part_space, 0);
 
     int twentythree_a = dayX.getPartOne();
     int twentythree_b = dayX.getPartTwo();
-    print_sol_line("03", twentythree_a, twentythree_b, part_space, 1);
+    print_sol_line("03", twentythree_a, twentythree_b, part_space, 0);
 
     int twentyfour_a = dayX.getPartOne();
     int twentyfour_b = dayX.getPartTwo();
-    print_sol_line("04", twentyfour_a, twentyfour_b, part_space, 1);
+    print_sol_line("04", twentyfour_a, twentyfour_b, part_space, 0);
 
     int twentyfive_a = dayX.getPartOne();
     int twentyfive_b = dayX.getPartTwo();
-    print_sol_line("05", twentyfive_a, twentyfive_b, part_space, 1);
+    print_sol_line("05", twentyfive_a, twentyfive_b, part_space, 0);
 
     for (size_t i = 0; i < total; i++) {
         std::cout << "\033[1;35m"
