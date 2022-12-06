@@ -11,3 +11,4 @@ The challenges will be done in C++.
 | Day 3 | ⭐⭐ |  
 | Day 4 | ⭐⭐ |
 | Day 5 | ⭐⭐ |  
+| Day 6 | ⭐⭐ |  
