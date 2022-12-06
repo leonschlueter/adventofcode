@@ -8,6 +8,7 @@
 #include "03/day03.hpp"
 #include "04/day04.hpp"
 #include "05/day05.hpp"
+#include "06/day06.hpp"
 #include "template/dayX.hpp"
 
 int main(int argc, char const *argv[]) {
@@ -52,26 +53,29 @@ int main(int argc, char const *argv[]) {
                   << "\033[0m";
     }
     std::cout << "\n";
-    std::vector<std::chrono::microseconds> times;
+    std::vector<std::chrono::milliseconds> times;
     // Instantiate different Day classes
     auto t1 = std::chrono::high_resolution_clock::now();
     DayOne dayOne("01/01");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayTwo dayTwo("02/02");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayThree dayThree("03/03");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayFour dayFour("04/04");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     DayFive dayFive("05/05");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
-    DayX dayX("x");
-    times.push_back(std::chrono::duration_cast<std::chrono::microseconds>(std::chrono::high_resolution_clock::now() - t1));
+    DaySix daySix("06/06");
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
+    t1 = std::chrono::high_resolution_clock::now();
+    DayX dayX("");
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
     // Print line per day:
     std::string one_a = std::to_string(dayOne.getPartOne());
@@ -93,13 +97,15 @@ int main(int argc, char const *argv[]) {
     std::string five_a = dayFive.getPartOne();
     std::string five_b = dayFive.getPartTwo();
     print_sol_line("05", five_a, five_b, part_space, 1);
-/*
-    int six_a = dayX.getPartOne();
-    int six_b = dayX.getPartTwo();
-    print_sol_line("06", six_a, six_b, part_space, 0);
-    int seven_a = dayX.getPartOne();
-    int seven_b = dayX.getPartTwo();
+
+    std::string six_a = std::to_string(daySix.getPartOne());
+    std::string six_b = std::to_string(daySix.getPartTwo());
+    print_sol_line("06", six_a, six_b, part_space, 1);
+
+    std::string seven_a = std::to_string(dayX.getPartOne());
+    std::string seven_b = std::to_string(dayX.getPartOne());
     print_sol_line("07", seven_a, seven_b, part_space, 0);
+    /*
     int eight_a = dayX.getPartOne();
     int eight_b = dayX.getPartTwo();
     print_sol_line("08", eight_a, eight_b, part_space, 0);
