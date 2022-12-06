@@ -1,29 +1,45 @@
 #include "day01.hpp"
 
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
-#include <fstream>
 
 #include "../utils/aoc_utils.h"
 
-DayOne::DayOne(std::string filename){
+DayOne::DayOne(std::string filename) {
     this->filename = filename;
     int* elves = this->parse_input(filename);
-   
+
     this->part_one = elves[2];
     this->part_two = elves[0] + elves[1] + elves[2];
 }
+DayOne::DayOne(std::string filename, char part) {
+    this->filename = filename;
+    int* elves = this->parse_input(filename);
+    switch (part) {
+        case '1':
+            this->part_one = elves[2];
+            break;
+        case '2':
+            this->part_two = elves[0] + elves[1] + elves[2];
+            break;
+        case 'b':
+            this->part_one = elves[2];
+            this->part_two = elves[0] + elves[1] + elves[2];
+            break;
 
-
-
+        default:
+            break;
+    }
+}
 
 /*
     Parses the given input file into an array with size 3, with three elves with the most food are stored.
     @param filename The name of the file.
-    @return Array of size 3, with the amount of food of the 3 biggest elves. 
+    @return Array of size 3, with the amount of food of the 3 biggest elves.
 */
-int* DayOne::parse_input(std::string &filename) {
+int* DayOne::parse_input(std::string& filename) {
     std::ifstream file(filename);
     int x = 0;
     static int arr[3] = {0, 0, 0};
@@ -51,9 +67,9 @@ int* DayOne::parse_input(std::string &filename) {
     return arr;
 }
 
-int DayOne::getPartOne(){
+int DayOne::getPartOne() {
     return this->part_one;
 }
-int DayOne::getPartTwo(){
+int DayOne::getPartTwo() {
     return this->part_two;
 }

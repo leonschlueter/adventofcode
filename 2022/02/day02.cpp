@@ -1,22 +1,43 @@
 #include "day02.hpp"
+
+#include <fstream>
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
-#include <fstream>
 
-DayTwo::DayTwo(std::string filename){
+DayTwo::DayTwo(std::string filename) {
     this->filename = filename;
     this->part_one = 0;
     this->part_two = 0;
     std::vector<std::vector<int>> input = this->parse_input(filename);
-   
+
     for (auto vec : input) {
-        
         this->part_one += this->calculate_scoreA(vec);
         this->part_two += this->calculate_scoreB(vec);
     }
 }
-
+DayTwo::DayTwo(std::string filename, char part) {
+    this->filename = filename;
+    this->part_one = 0;
+    this->part_two = 0;
+    std::vector<std::vector<int>> input = this->parse_input(filename);
+    for (auto vec : input) {
+        switch (part) {
+            case '1':
+                this->part_one += this->calculate_scoreA(vec);
+                break;
+            case '2':
+                this->part_two += this->calculate_scoreB(vec);
+                break;
+            case 'b':
+                this->part_one += this->calculate_scoreA(vec);
+                this->part_two += this->calculate_scoreB(vec);
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 /*
     Calculates the score of a vector<int> with length 2, where:
@@ -25,7 +46,6 @@ DayTwo::DayTwo(std::string filename){
     @return Score of match: Form chosen + 0/3/6 depending on loss/draw/win
 */
 int DayTwo::calculate_scoreA(std::vector<int> match) {
-    
     int result = 0;
     int a = match[0];
     int b = match[1];
@@ -98,9 +118,9 @@ std::vector<std::vector<int>> DayTwo::parse_input(std::string &filename) {
     return input;
 }
 
-int DayTwo::getPartOne(){
+int DayTwo::getPartOne() {
     return this->part_one;
 }
-int DayTwo::getPartTwo(){
+int DayTwo::getPartTwo() {
     return this->part_two;
 }

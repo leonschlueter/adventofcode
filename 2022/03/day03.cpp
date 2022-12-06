@@ -27,7 +27,35 @@ DayThree::DayThree(std::string filename) {
     this->part_one = this->calculate_scoreA(input, map);
     this->part_two = this->calculate_scoreB(input, map);
 }
+DayThree::DayThree(std::string filename, char part) {
+    this->filename = filename;
 
+    std::vector<std::vector<std::string>> input = this->parse_input(filename);
+    std::map<char, int> map;
+    char letterLow = 'a';
+    char letterUpper = 'A';
+    for (int i = 1; i < 27; i++) {
+        // std::cout << letterLow << " " << i<< "  " << letterUpper << " " << (i+26) << "\n";
+        map[letterLow] = i;
+        map[letterUpper] = 26 + i;
+        letterLow++;
+        letterUpper++;
+    }
+    switch (part) {
+        case '1':
+            this->part_one = this->calculate_scoreA(input, map);
+            break;
+        case '2':
+            this->part_two = this->calculate_scoreB(input, map);
+            break;
+        case 'b':
+            this->part_one = this->calculate_scoreA(input, map);
+            this->part_two = this->calculate_scoreB(input, map);
+            break;
+        default:
+            break;
+    }
+}
 int DayThree::calculate_scoreA(std::vector<std::vector<std::string>> input, std::map<char, int> map) {
     int result = 0;
     for (auto rucksack : input) {

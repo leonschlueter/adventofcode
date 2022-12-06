@@ -14,7 +14,26 @@ DaySix::DaySix(std::string filename) {
     this->part_one = this->calculate_scoreA(input);
     this->part_two = this->calculate_scoreB(input);
 }
+DaySix::DaySix(std::string filename, char part) {
+    this->filename = filename;
 
+    std::string input = this->parse_input(filename);
+
+   switch (part) {
+            case '1':
+                this->part_one += this->calculate_scoreA(input);
+                break;
+            case '2':
+                this->part_two += this->calculate_scoreB(input);
+                break;
+            case 'b':
+                this->part_one += this->calculate_scoreA(input);
+                this->part_two += this->calculate_scoreB(input);
+                break;
+            default:
+                break;
+        }
+}
 int DaySix::calculate_scoreA(std::string in) {
     for (int i = 0; i < in.length(); i++) {
         std::set<char> set;

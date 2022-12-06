@@ -19,6 +19,26 @@ DayFour::DayFour(std::string filename) {
     this->part_two = this->calculate_scoreB(input);
 }
 
+DayFour::DayFour(std::string filename, char part) {
+    this->filename = filename;
+
+    std::vector<std::vector<int>> input = this->parse_input(filename);
+    switch (part) {
+        case '1':
+            this->part_one = this->calculate_scoreA(input);
+            break;
+        case '2':
+            this->part_two = this->calculate_scoreB(input);
+            break;
+        case 'b':
+            this->part_one = this->calculate_scoreA(input);
+            this->part_two = this->calculate_scoreB(input);
+            break;
+
+        default:
+            break;
+    }
+}
 
 int DayFour::calculate_scoreA(std::vector<std::vector<int>> input) {
     int result = 0;

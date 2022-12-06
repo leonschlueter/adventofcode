@@ -82,6 +82,90 @@ DayFive::DayFive(std::string filename) {
     this->part_two = this->calculate_scoreB(input, instructions);
 }
 
+DayFive::DayFive(std::string filename, char part) {
+    this->filename = filename;
+    std::ifstream file(filename);
+    std::vector<std::stack<char>> input;
+    std::vector<std::string> crates;
+    std::string line;
+    bool move = false;
+    bool init = false;
+
+    // Create Start Stack:
+    while (std::getline(file, line) && !move) {
+        int amount = line.length() / 4;
+        if (!init) {
+            init = true;
+            for (int i = 0; i <= amount; i++) {
+                std::stack<char> stack;
+                input.push_back(stack);
+                crates.push_back("");
+            }
+        }
+
+        for (int i = 0; i <= amount; i = i + 1) {
+            std::string crateLabel = line.substr(4 * i + 1, 1);
+
+            char crate = crateLabel[0];
+            if (crate != ' ' && crate != '1') {
+                crates[i] += crate;
+            }
+            if (crate == '1') {
+                move = true;
+                break;
+            }
+        }
+    }
+    // Build actual stacks:
+    for (int i = 0; i < input.size(); i++) {
+        std::string pile = crates[i];
+        int n = pile.length();
+        for (int i = 0; i < n / 2; i++) {
+            std::swap(pile[i], pile[n - i - 1]);
+        }
+        for (char c : pile) {
+            input[i].push(c);
+        }
+    }
+
+    // Create instructions vector
+    std::vector<std::vector<int>> instructions;
+    while (std::getline(file, line)) {
+        // std::cout << "Working on [" << line << "]\n";
+        if (!line.empty()) {
+            line.erase(0, 5);
+            line.erase(std::remove_if(line.begin(), line.end(),
+                                      [](auto const& c) -> bool { return std::isalpha(c); }),
+                       line.end());
+
+            std::vector<int> instruction;
+            int i;
+            std::stringstream ss(line);
+            while (ss >> i) {
+                instruction.push_back(i);
+            }
+            instructions.push_back(instruction);
+        }
+    }
+
+    switch (part) {
+        case '1':
+            this->part_one = this->calculate_scoreA(input, instructions);
+            break;
+        case '2':
+            this->part_two = this->calculate_scoreB(input, instructions);
+            break;
+        case 'b':
+            this->part_one = this->calculate_scoreA(input, instructions);
+            this->part_two = this->calculate_scoreB(input, instructions);
+            break;
+
+        default:
+            break;
+    }
+}
+
+
 std::string DayFive::calculate_scoreA(std::vector<std::stack<char>> piles, std::vector<std::vector<int>> instructions) {
     for (std::vector<int> instruction : instructions) {
         for (int i = 0; i < instruction[0]; i++) {

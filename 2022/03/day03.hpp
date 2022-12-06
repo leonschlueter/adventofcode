@@ -4,6 +4,7 @@
 class DayThree {
    public:
     DayThree(std::string filename);
+    DayThree(std::string filename, char part);
     int getPartOne();
     int getPartTwo();
 

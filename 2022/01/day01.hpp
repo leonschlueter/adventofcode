@@ -3,6 +3,7 @@
 class DayOne {
    public:
     DayOne(std::string filename);
+    DayOne(std::string filename, char part);
     int getPartOne();
     int getPartTwo();
 
