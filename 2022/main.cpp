@@ -9,6 +9,7 @@
 #include "04/day04.hpp"
 #include "05/day05.hpp"
 #include "06/day06.hpp"
+#include "07/day07.hpp"
 #include "template/dayX.hpp"
 
 int main(int argc, char const *argv[]) {
@@ -74,6 +75,9 @@ int main(int argc, char const *argv[]) {
     DaySix daySix("06/06");
     times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
+    DaySeven daySeven("07/07");
+    times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
+    t1 = std::chrono::high_resolution_clock::now();
     DayX dayX("");
     times.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - t1));
     t1 = std::chrono::high_resolution_clock::now();
@@ -102,9 +106,9 @@ int main(int argc, char const *argv[]) {
     std::string six_b = std::to_string(daySix.getPartTwo());
     print_sol_line("06", six_a, six_b, part_space, 1);
 
-    std::string seven_a = std::to_string(dayX.getPartOne());
-    std::string seven_b = std::to_string(dayX.getPartOne());
-    print_sol_line("07", seven_a, seven_b, part_space, 0);
+    std::string seven_a = std::to_string(daySeven.getPartOne());
+    std::string seven_b = std::to_string(daySeven.getPartTwo());
+    print_sol_line("07", seven_a, seven_b, part_space, 1);
     /*
     int eight_a = dayX.getPartOne();
     int eight_b = dayX.getPartTwo();
