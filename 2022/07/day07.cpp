@@ -18,7 +18,27 @@ DaySeven::DaySeven(std::string filename) {
     this->calculate_scoreA(&root);
     this->calculate_scoreB(&root);
 }
-
+DaySeven::DaySeven(std::string filename, char part) {
+    this->filename = filename;
+    this->l =  std::vector<std::pair<std::string, int>>();
+    folder root = this->parse_input(filename);
+    this->part_one = 0;
+    this->part_two = 0;
+    switch (part) {
+        case '1':
+            this->calculate_scoreA(&root);
+            break;
+        case '2':
+            this->calculate_scoreB(&root);
+            break;
+        case 'b':
+            this->calculate_scoreA(&root);
+            this->calculate_scoreB(&root);
+            break;
+        default:
+            break;
+    }
+}
 
 
 void DaySeven::calculate_scoreA(folder* curr){

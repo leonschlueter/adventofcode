@@ -8,3 +8,5 @@ adventofcode/*/*/a.out
 adventofcode/*/*/.vscode/
 adventofcode/*/*/.vscode/settings.json
 2022/.vscode/
+.vscode/c_cpp_properties.json
+.vscode/settings.json

@@ -11,6 +11,7 @@ struct folder{
 class DaySeven {
    public:
     DaySeven(std::string filename);
+    DaySeven(std::string filename, char part);
     int getPartOne();
     int getPartTwo();
 
