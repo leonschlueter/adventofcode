@@ -116,11 +116,12 @@ int main(int argc, char const *argv[]) {
 
     std::string eight_a = std::to_string(dayEight.getPartOne());
     std::string eight_b = std::to_string(dayEight.getPartTwo());
-    print_sol_line("08", eight_a, eight_b, part_space, 0);
-    /*
-    int nine_a = dayX.getPartOne();
-    int nine_b = dayX.getPartTwo();
+    print_sol_line("08", eight_a, eight_b, part_space, 1);
+    
+    std::string nine_a = std::to_string(dayX.getPartOne());
+    std::string nine_b = std::to_string(dayX.getPartOne());
     print_sol_line("09", nine_a, nine_b, part_space, 0);
+    /*
     int ten_a = dayX.getPartOne();
     int ten_b = dayX.getPartTwo();
     print_sol_line("10", ten_a, ten_b, part_space, 0);
