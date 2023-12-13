@@ -75,7 +75,7 @@ def parse_input(f):
         
 
 def main():
-    f = open("input/day03")
+    f = open("input/test_day03")
     s = parse_input(f)
     print("sum: "+  str(s))
 
