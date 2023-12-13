@@ -21,12 +21,6 @@ def parse_input(f):
        # print(score)
     return res,scores
 
-def append(l, s):
-    if len(s) == 1:
-        l.append(int(s + s))
-    if len(s) > 1: 
-        l.append(int(s[0] + s[-1]))
-    return l
 
 
 def main():
